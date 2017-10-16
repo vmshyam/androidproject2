@@ -27,6 +27,8 @@ public class RegisterActivity extends AppCompatActivity {
     private String userEmail;
     private String userPassword;
 
+    DatabaseHelper helper = new DatabaseHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +48,20 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this,
                             "Registration was Unsuccessful", Toast.LENGTH_SHORT).show();
                 }else{
+
+                    //Insert user information into database
+                    Contact c = new Contact();
+                    c.setGivenName(usersName);
+                    c.setUserName(usersUsername);
+                    c.setEmailAdress(userEmail);
+                    c.setPassword(userPassword);
+
+                    helper.insertContact(c);
                     Toast.makeText(RegisterActivity.this,
                             "Successfully Registered", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    intent.putExtra("USERNAME_REG", usersUsername);
-                    intent.putExtra("PASSWORD_REG", userPassword);
+//                    intent.putExtra("USERNAME_REG", usersUsername);
+//                    intent.putExtra("PASSWORD_REG", userPassword);
                     startActivity(intent);
                 }
             }

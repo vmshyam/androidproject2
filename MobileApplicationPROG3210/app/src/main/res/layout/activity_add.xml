@@ -13,41 +13,44 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/btnHomeAdd"
+            android:id="@+id/btnAddAdd"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginRight="16dp"
             android:padding="20dp"
             android:text="Add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.8"
-            app:layout_constraintLeft_toRightOf="@+id/btnHomePhotos"
+            app:layout_constraintLeft_toRightOf="@+id/btnPhotosPhotos"
+            android:textColor="@color/colorAccent"
             app:layout_constraintRight_toRightOf="parent" />
 
         <Button
-            android:id="@+id/btnHomePhotos"
+            android:id="@+id/btnAddPhotos"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:layout_marginLeft="39dp"
+            android:layout_marginLeft="155dp"
             android:padding="20dp"
             android:text="Photos"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/btnHomeProfile" />
+            app:layout_constraintLeft_toLeftOf="parent" />
 
         <Button
-            android:id="@+id/btnHomeProfile"
+            android:id="@+id/btnAddProfile"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
             android:padding="20dp"
             android:text="Profile"
-            android:textColor="@color/colorAccent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/btnPhotosPhotos"
+            android:layout_marginRight="8dp"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" />
+            android:layout_marginBottom="16dp" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

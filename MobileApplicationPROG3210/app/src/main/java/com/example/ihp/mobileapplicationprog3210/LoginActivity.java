@@ -29,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     private String regUsername = null;
     private String regPassword = null;
 
+    DatabaseHelper helper = new DatabaseHelper(this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +52,12 @@ public class LoginActivity extends AppCompatActivity {
                 usernameLoggedIn = usernameLogin.getText().toString().trim();
                 passwordLoggedIn = passwordLogin.getText().toString().trim();
 
+                //if (CheckLoginValidation())
                 if (CheckLoginValidation()){
                     Toast.makeText(LoginActivity.this,
                             "Welcome to SnapSter", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    intent.putExtra("USERNAME", usernameLoggedIn);
+                    //intent.putExtra("USERNAME", usernameLoggedIn);
                     startActivity(intent);
 
                 }else{
@@ -86,10 +89,22 @@ public class LoginActivity extends AppCompatActivity {
     public boolean CheckLoginValidation()
     {
         boolean checkResult = false;
+        String searchedPassword = null;
 
-        if ((usernameLoggedIn.equals(regUsername)) && (passwordLoggedIn.equals(regPassword))){
+        if (usernameLoggedIn.equals("") || passwordLoggedIn.equals("")){
+            checkResult = false;
+        }
+        else {
+            searchedPassword = helper.searchUserNameInDatabase(usernameLoggedIn);
+        }
+
+        if (passwordLoggedIn.equals(searchedPassword)){
             checkResult = true;
         }
+
+/*        if ((usernameLoggedIn.equals(regUsername)) && (passwordLoggedIn.equals(regPassword))){
+            checkResult = true;
+        }*/
 
         return checkResult;
     }
