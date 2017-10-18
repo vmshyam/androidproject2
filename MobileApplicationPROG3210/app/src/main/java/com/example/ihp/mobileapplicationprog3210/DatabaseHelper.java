@@ -65,20 +65,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_PASSWORD + " FROM " + TABLE_NAME + ";";
         Cursor cursor = db.rawQuery(query, null);
         String queriedUsername;
-        String querieddPassword = "NOT FOUND";
+        String queriedPassword = "NOT FOUND";
 
         if (cursor.moveToFirst())
         {
             do {
                 queriedUsername = cursor.getString(0);
                 if (queriedUsername.equals(userName)) {
-                    querieddPassword = cursor.getString(1);
+                    queriedPassword = cursor.getString(1);
                     break;
                 }
             }while (cursor.moveToNext());
         }
 
-        return querieddPassword;
+        return queriedPassword;
     }
 
     @Override

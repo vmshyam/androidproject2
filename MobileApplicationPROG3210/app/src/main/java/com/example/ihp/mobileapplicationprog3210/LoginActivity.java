@@ -56,7 +56,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (CheckLoginValidation()){
                     Toast.makeText(LoginActivity.this,
                             "Welcome to SnapSter", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                     //intent.putExtra("USERNAME", usernameLoggedIn);
                     startActivity(intent);
 
