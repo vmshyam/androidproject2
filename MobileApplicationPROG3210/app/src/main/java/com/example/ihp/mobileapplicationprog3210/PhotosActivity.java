@@ -17,9 +17,9 @@ public class PhotosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photos);
 
-        btnJvPhotosProfile = (Button) findViewById(R.id.btnPhotosProfile);
-        btnJvPhotosPhotos = (Button) findViewById(R.id.btnPhotosPhotos);
-        btnjvPhotosAdd = (Button) findViewById(R.id.btnPhotosAdd);
+/*        btnJvPhotosProfile = (Button) findViewById(R.id.btnNavAdminViewSettings);
+        btnJvPhotosPhotos = (Button) findViewById(R.id.btnNavUserDB);
+        btnjvPhotosAdd = (Button) findViewById(R.id.btnNavAddPhotos);
 
         btnJvPhotosProfile.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -35,7 +35,7 @@ public class PhotosActivity extends AppCompatActivity {
                 Intent intent = new Intent(PhotosActivity.this, AddActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
     }
 }

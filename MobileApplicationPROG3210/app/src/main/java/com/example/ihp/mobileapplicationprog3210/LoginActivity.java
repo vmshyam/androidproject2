@@ -10,11 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * This Java file is related to 'activity_main.xml'
- * The purpose of this file is to allow user to login
- *      to the app. If user is not register within the
- *      app, user must 'Sign Up' before logging in within
- *      the app. User logs in with 'Username' and 'Password'
+ *
  */
 
 public class LoginActivity extends AppCompatActivity {
@@ -53,13 +49,21 @@ public class LoginActivity extends AppCompatActivity {
                 passwordLoggedIn = passwordLogin.getText().toString().trim();
 
                 //if (CheckLoginValidation())
-                if (CheckLoginValidation()){
+                if(usernameLoggedIn.equals("admin") && passwordLoggedIn.equals("password")) {
+                    Toast.makeText(LoginActivity.this,
+                            "Logging Into Admin Account", Toast.LENGTH_SHORT).show();
+                    //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intentAdminActivity1 = new Intent(LoginActivity.this, AdminSettingsActivity.class);
+                    //intent.putExtra("USERNAME", usernameLoggedIn);
+                    startActivity(intentAdminActivity1);
+                }
+                else if (CheckLoginValidation()){
                     Toast.makeText(LoginActivity.this,
                             "Welcome to SnapSter", Toast.LENGTH_SHORT).show();
                     //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                    Intent intentHomeActitivity = new Intent(LoginActivity.this, HomeActivity.class);
                     //intent.putExtra("USERNAME", usernameLoggedIn);
-                    startActivity(intent);
+                    startActivity(intentHomeActitivity);
 
                 }else{
                     Toast.makeText(LoginActivity.this,

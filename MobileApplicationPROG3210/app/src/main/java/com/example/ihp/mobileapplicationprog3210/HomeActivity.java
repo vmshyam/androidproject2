@@ -17,9 +17,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        btnJvHomeProfile = (Button) findViewById(R.id.btnHomeProfile);
-        btnJvHomePhotos = (Button) findViewById(R.id.btnHomePhotos);
-        btnjvHomeAdd = (Button) findViewById(R.id.btnHomeAdd);
+/*        btnJvHomeProfile = (Button) findViewById(R.id.btnNavAdminViewSettings);
+        btnJvHomePhotos = (Button) findViewById(R.id.btnNavUserDB);
+        btnjvHomeAdd = (Button) findViewById(R.id.btnNavAddPhotos);
 
         btnJvHomePhotos.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -35,7 +35,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeActivity.this, AddActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
     }
 }
