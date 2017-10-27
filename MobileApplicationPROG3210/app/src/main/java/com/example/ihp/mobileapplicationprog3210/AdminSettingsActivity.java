@@ -8,7 +8,8 @@ import android.widget.Button;
 
 public class AdminSettingsActivity extends AppCompatActivity {
 
-    private Button btnJvAdminSettings, btnJvUserDB, btnjvPhotoDB, btndtUserTable, btnViewAccontLog;
+    private Button btnJvAdminSettings, btnJvUserDB,
+            btnjvPhotoDB, btndtUserTable, btnViewAccontLog, btndtAccountLogTable;
 
 
     DatabaseHelper mDatabaseHelper;
@@ -24,6 +25,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
         btnjvPhotoDB = (Button) findViewById(R.id.btnNavPhotoDB);
         btndtUserTable = (Button) findViewById(R.id.btnDropUserTable);
         btnViewAccontLog = (Button) findViewById(R.id.btnViewAccountLogs);
+        btndtAccountLogTable = (Button) findViewById(R.id.btnDeleteAccoutLogTable);
 
         btnJvUserDB.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -56,7 +58,12 @@ public class AdminSettingsActivity extends AppCompatActivity {
             }
         });
 
-
+        btndtAccountLogTable.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                mDatabaseHelper.DropTableAccountLog();
+            }
+        });
     }
 
 }

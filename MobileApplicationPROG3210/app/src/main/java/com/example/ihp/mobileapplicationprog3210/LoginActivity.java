@@ -9,6 +9,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.stetho.Stetho;
+import com.facebook.stetho.okhttp3.StethoInterceptor;
+
+import okhttp3.OkHttpClient;
+
 /**
  *
  */
@@ -25,12 +30,20 @@ public class LoginActivity extends AppCompatActivity {
     private String regUsername = null;
     private String regPassword = null;
 
-    DatabaseHelper helper = new DatabaseHelper(this);
+    DatabaseHelper dbHelper = new DatabaseHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        // Start Stetho
+        Stetho.initializeWithDefaults(this);
+
+        new OkHttpClient.Builder()
+                .addNetworkInterceptor(new StethoInterceptor())
+                .build();
+        // End Stetho
 
         usernameLogin = (EditText) findViewById(R.id.etUsernameMain);
         passwordLogin = (EditText) findViewById(R.id.etPasswordMain);
@@ -52,6 +65,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(usernameLoggedIn.equals("admin") && passwordLoggedIn.equals("password")) {
                     Toast.makeText(LoginActivity.this,
                             "Logging Into Admin Account", Toast.LENGTH_SHORT).show();
+
                     //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     Intent intentAdminActivity1 = new Intent(LoginActivity.this, AdminSettingsActivity.class);
                     //intent.putExtra("USERNAME", usernameLoggedIn);
@@ -60,6 +74,12 @@ public class LoginActivity extends AppCompatActivity {
                 else if (CheckLoginValidation()){
                     Toast.makeText(LoginActivity.this,
                             "Welcome to SnapSter", Toast.LENGTH_SHORT).show();
+
+                    String foundUserLoggedInId = Integer.toString(dbHelper.retrieveSelectedUserID(usernameLoggedIn));
+
+                    dbHelper.insertAccountLogData(foundUserLoggedInId, usernameLoggedIn);
+                    //dbHelper.insertAccountLogData("0", usernameLoggedIn);
+
                     //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     Intent intentHomeActitivity = new Intent(LoginActivity.this, HomeActivity.class);
                     //intent.putExtra("USERNAME", usernameLoggedIn);
@@ -100,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
             checkResult = false;
         }
         else {
-            searchedPassword = helper.searchUserNameInDatabase(usernameLoggedIn);
+            searchedPassword = dbHelper.searchUserNameInDatabase(usernameLoggedIn);
         }
 
         if (passwordLoggedIn.equals(searchedPassword)){

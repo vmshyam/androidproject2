@@ -13,7 +13,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static  final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "SNAPSTER_DB.db";
+    private static final String DATABASE_NAME = "SNAPSTER_DB1.db";
 
     private static final String USERS_TABLE_NAME = "contacts";
     private static final String USERS_COLUMN_ID = "id";
@@ -22,7 +22,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String USERS_COLUMN_EMAIL = "email";
     private static final String USERS_COLUMN_PASSWORD = "password";
 
-    private static final String ACCOUNT_LOGS_TABLE_NAME = "account_logs";
+    private static final String ACCOUNT_LOGS_TABLE_NAME = "accountLogs";
     private static final String ACCOUNT_LOGS_COLUMN_ID = "id";
     private static final String ACCOUNT_LOGS_COLUMN_USER_ID = "user_id";
     private static final String ACCOUNT_LOGS_COLUMN_USERNAME = "username";
@@ -33,15 +33,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     SQLiteDatabase db;
     //TODO Need to check if ad ID into string query for USER_COLUMN_ID effects results below
     private static final String TABLE_CREATE_FOR_USER = "CREATE TABLE " + USERS_TABLE_NAME + " ("
-            + USERS_COLUMN_ID + " ID INTEGER PRIMARY KEY NOT NULL, "
+            + USERS_COLUMN_ID + " INTEGER PRIMARY KEY NOT NULL, "
             + USERS_COLUMN_NAME + " TEXT NOT NULL, "
             + USERS_COLUMN_USERNAME + " TEXT NOT NULL, "
             + USERS_COLUMN_EMAIL + " TEXT NOT NULL, "
             + USERS_COLUMN_PASSWORD + " TEXT NOT NULL "
             + ");";
 
-    private static final String TABLE_CREATE_FOR_ACCOUNT_LOGS = "CREATE TABLE " + ACCOUNT_LOGS_TABLE_NAME + " ("
-            + ACCOUNT_LOGS_COLUMN_ID + " ID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+    private static final String TABLE_CREATE_FOR_ACCOUNT_LOGS = "CREATE TABLE IF NOT EXISTS " + ACCOUNT_LOGS_TABLE_NAME + " ("
+            + ACCOUNT_LOGS_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + ACCOUNT_LOGS_COLUMN_USER_ID + " TEXT NOT NULL, "
             + ACCOUNT_LOGS_COLUMN_USERNAME + " TEXT NOT NULL, "
             + ACCOUNT_LOGS_COLUMN_CURRENT_TIMESTAMP + " DATETIME DEFAULT CURRENT_TIMESTAMP "
@@ -55,6 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(TABLE_CREATE_FOR_USER);
+        sqLiteDatabase.execSQL(TABLE_CREATE_FOR_ACCOUNT_LOGS);
         this.db = sqLiteDatabase;
     }
 
@@ -106,9 +107,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return data;
     }
 
-    /** Insert values in to Account Log table **/
-    public void insertAccoutLogData(String userID, String userName){
+    /** Find a particular UserID related to the Username **/
+    public int retrieveSelectedUserID(String userName){
+        int foundUserID = -1;
 
+        SQLiteDatabase dbGetUserID = this.getWritableDatabase();
+
+        String queryGetUserID = "SELECT " + USERS_COLUMN_ID + " FROM "
+                + USERS_TABLE_NAME + " WHERE " + USERS_COLUMN_USERNAME + " = '" + userName + "'";
+
+        Cursor dataRetrieved = dbGetUserID.rawQuery(queryGetUserID, null);
+
+        while (dataRetrieved.moveToNext()){
+            foundUserID = dataRetrieved.getInt(0);
+        }
+
+
+
+        return foundUserID;
+    }
+
+
+    /** Insert values in to Account Log table **/
+    public void insertAccountLogData(String userID, String userName){
+
+        db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ACCOUNT_LOGS_COLUMN_USER_ID, userID);
+        contentValues.put(ACCOUNT_LOGS_COLUMN_USERNAME, userName);
+
+        db.insert(ACCOUNT_LOGS_TABLE_NAME, null, contentValues);
+        db.close();
     }
 
 
@@ -127,10 +156,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         dtUsers.delete(USERS_TABLE_NAME, null, null);
     }
 
+    public void DropTableAccountLog()
+    {
+        SQLiteDatabase dtUsers = this.getWritableDatabase();
+        dtUsers.delete(ACCOUNT_LOGS_TABLE_NAME, null, null);
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        String query = "DROP TABLE IF EXISTS " + USERS_TABLE_NAME;
-        db.execSQL(query);
+        String query1 = "DROP TABLE IF EXISTS " + USERS_TABLE_NAME;
+        String query2 = "DROP TABLE IF EXISTS " + ACCOUNT_LOGS_TABLE_NAME;
+        db.execSQL(query1);
+        db.execSQL(query2);
+
         this.onCreate(sqLiteDatabase);
     }
 }
