@@ -70,11 +70,14 @@ public class AdminAccountLogsActivity extends AppCompatActivity {
         Cursor data = mDatabaseHelper.getRetrieveAccountLogData();
 
         ArrayList<String> listData = new ArrayList<>();
-        while (data.moveToNext()){
-            //get the value from the database in column 1
-            //then add it to the ArrayList
-            listData.add(data.getString(2));
-
+        if (data.getCount() != 0) {
+            while (data.moveToNext()){
+                //get the value from the database in column 1
+                //then add it to the ArrayList
+                listData.add(data.getString(2));
+            }
+        }else{
+            listData.add("Account Log Table is Empty");
         }
 
         ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);

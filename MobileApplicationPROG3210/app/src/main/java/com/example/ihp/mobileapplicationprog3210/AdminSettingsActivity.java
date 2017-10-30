@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class AdminSettingsActivity extends AppCompatActivity {
 
@@ -47,6 +48,8 @@ public class AdminSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mDatabaseHelper.DropTableUsers();
+                Toast.makeText(AdminSettingsActivity.this,
+                        "Successfully Cleared User Account Table", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -62,6 +65,8 @@ public class AdminSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mDatabaseHelper.DropTableAccountLog();
+                Toast.makeText(AdminSettingsActivity.this,
+                        "Successfully Cleared Account Log Table", Toast.LENGTH_SHORT).show();
             }
         });
     }
