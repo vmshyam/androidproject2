@@ -28,12 +28,14 @@ public class AdminAccountLogsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_account_logs);
 
+        mDatabaseHelper = new DatabaseHelper(this);
+
         btnJvAdminSettings = (Button) findViewById(R.id.btnALNavAdminSettings);
         btnJvUserDB = (Button) findViewById(R.id.btnALNavUserDB);
         btnJvPhotoDB = (Button) findViewById(R.id.btnALNavPhotoDB);
 
         mAccountLogListView = (ListView) findViewById(R.id.lvShowAccountLogDB);
-        mDatabaseHelper = new DatabaseHelper(this);
+
 
         PopulateListView();
 

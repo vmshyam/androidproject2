@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Start Stetho
+        // Start Stetho  -> chrome://inspect/#devices
         Stetho.initializeWithDefaults(this);
 
         new OkHttpClient.Builder()
@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else if (CheckLoginValidation()){
                     Toast.makeText(LoginActivity.this,
-                            "Welcome to SnapSter", Toast.LENGTH_SHORT).show();
+                            "Welcome to SnapSter: " + usernameLoggedIn, Toast.LENGTH_SHORT).show();
 
                     String foundUserLoggedInId = Integer.toString(dbHelper.retrieveSelectedUserID(usernameLoggedIn));
 
@@ -81,9 +81,9 @@ public class LoginActivity extends AppCompatActivity {
                     //dbHelper.insertAccountLogData("0", usernameLoggedIn);
 
                     //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    Intent intentHomeActitivity = new Intent(LoginActivity.this, HomeActivity.class);
-                    //intent.putExtra("USERNAME", usernameLoggedIn);
-                    startActivity(intentHomeActitivity);
+                    Intent intentHomeActivity = new Intent(LoginActivity.this, HomeActivity.class);
+                    intentHomeActivity.putExtra("LOGGED_IN_USER_ID", foundUserLoggedInId);
+                    startActivity(intentHomeActivity);
 
                 }else{
                     Toast.makeText(LoginActivity.this,
