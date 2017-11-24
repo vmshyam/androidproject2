@@ -7,6 +7,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -27,6 +28,8 @@ public class RegisterActivity extends AppCompatActivity {
     private String userEmail;
     private String userPassword;
 
+    private TextView tvBackClick;
+
     DatabaseHelper helper = new DatabaseHelper(this);
 
     @Override
@@ -39,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         emailValue = (EditText) findViewById(R.id.etEmailReg);
         passwordValue = (EditText) findViewById(R.id.etPasswordReg);
         btnNewRegister = (Button) findViewById(R.id.btnSignUpReg);
+        tvBackClick = (TextView) findViewById(R.id.tvBack);
 
         // When user click 'Sign Up' button
         btnNewRegister.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +68,14 @@ public class RegisterActivity extends AppCompatActivity {
 //                    intent.putExtra("PASSWORD_REG", userPassword);
                     startActivity(intent);
                 }
+            }
+        });
+
+        tvBackClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentSignOut = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(intentSignOut);
             }
         });
     }

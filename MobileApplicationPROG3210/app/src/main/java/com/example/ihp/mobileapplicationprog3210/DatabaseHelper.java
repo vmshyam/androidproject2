@@ -94,7 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public String searchUserNameInDatabase(String userName){
 
         db = this.getReadableDatabase();
-        String query = "SELECT " + USERS_COLUMN_NAME + ", "
+        String query = "SELECT " + USERS_COLUMN_USERNAME + ", "
                 + USERS_COLUMN_PASSWORD + " FROM " + USERS_TABLE_NAME + ";";
         Cursor cursor = db.rawQuery(query, null);
         String queriedUsername;
@@ -164,7 +164,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    /** Insert values in to Account Log table **/
+    /** Insert values into Account Log table **/
     public void insertAccountLogData(String userID, String userName){
 
         db = this.getWritableDatabase();

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -29,6 +30,7 @@ public class AddActivity extends AppCompatActivity {
     private Button btnCameraPhoto, btnGallaryPhoto, btnAddPhoto;
     EditText etPhotoName;
     ImageView ivMyImage;
+    TextView tvSignOutClick;
 
     DatabaseHelper mDatabaseHelper;
 
@@ -53,7 +55,9 @@ public class AddActivity extends AppCompatActivity {
         btnAddPhoto = (Button) findViewById(R.id.btnAddPhoto);
 
         ivMyImage = (ImageView) findViewById(R.id.ivAddPhotoPreview);
+
         etPhotoName = (EditText) findViewById(R.id.etPhotoName);
+        tvSignOutClick = (TextView) findViewById(R.id.tvSignOut);
 
 
 
@@ -109,6 +113,14 @@ public class AddActivity extends AppCompatActivity {
             }
         });
 
+        tvSignOutClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentSignOut = new Intent(AddActivity.this, LoginActivity.class);
+                startActivity(intentSignOut);
+            }
+        });
+
     }
 
     private byte[] ImageViewToByte(ImageView addedImage){
@@ -156,7 +168,16 @@ public class AddActivity extends AppCompatActivity {
             try {
                 InputStream inputStream = getContentResolver().openInputStream(uri);
                 Bitmap bitmapImage = BitmapFactory.decodeStream(inputStream);
-                Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmapImage, 300, 250, true);
+
+                int width = bitmapImage.getWidth();
+                int height = bitmapImage.getHeight();
+                float scaleWidth = ((float) 1000) / width;
+                float scaleHeight = ((float) 1000) / height;
+                Matrix matrix = new Matrix();
+                matrix.postScale(scaleWidth, scaleHeight);
+                Bitmap resizedBitmap = Bitmap.createBitmap(bitmapImage, 0, 0, width, height, matrix, true);
+                //Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmapImage, 300, 250, true);
+
                 ivMyImage.setImageBitmap(resizedBitmap);
 
             }catch (FileNotFoundException e){
@@ -164,7 +185,16 @@ public class AddActivity extends AppCompatActivity {
             }
         }else if (requestCode == REQUEST_CODE_CAMERA){
             Bitmap bitmapCamera = (Bitmap) data.getExtras().get("data");
-            Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmapCamera, 300, 250, true);
+
+            int width = bitmapCamera.getWidth();
+            int height = bitmapCamera.getHeight();
+            float scaleWidth = ((float) 1000) / width;
+            float scaleHeight = ((float) 1000) / height;
+            Matrix matrix = new Matrix();
+            matrix.postScale(scaleWidth, scaleHeight);
+            Bitmap resizedBitmap = Bitmap.createBitmap(bitmapCamera, 0, 0, width, height, matrix, true);
+
+            //Bitmap resizedBitmap = Bitmap.createScaledBitmap(bitmapCamera, 300, 250, true);
             ivMyImage.setImageBitmap(resizedBitmap);
         }
 

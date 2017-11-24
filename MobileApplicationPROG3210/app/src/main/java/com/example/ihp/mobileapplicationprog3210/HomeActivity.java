@@ -17,6 +17,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView tvUsernameView;
     private TextView tvFullNameView;
     private TextView tvEmailView;
+    private TextView tvSignOutClick;
 
     private String loggedInUserId;
     DatabaseHelper mDatabaseHelper;
@@ -36,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
         tvUsernameView = (TextView) findViewById(R.id.tvDateStamp);
         tvFullNameView = (TextView) findViewById(R.id.tvUsernameTag);
         tvEmailView = (TextView) findViewById(R.id.tvEmail);
+        tvSignOutClick = (TextView) findViewById(R.id.tvSignOut);
 
         populateHomeView();
 
@@ -57,6 +59,14 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intentAddActivity = new Intent(HomeActivity.this, AddActivity.class);
                 intentAddActivity.putExtra("LOGGED_IN_USER_ID", loggedInUserId);
                 startActivity(intentAddActivity);
+            }
+        });
+
+        tvSignOutClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentSignOut = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivity(intentSignOut);
             }
         });
 

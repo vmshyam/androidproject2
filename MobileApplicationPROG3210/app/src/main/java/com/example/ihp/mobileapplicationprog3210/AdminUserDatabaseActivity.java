@@ -21,6 +21,8 @@ public class AdminUserDatabaseActivity extends AppCompatActivity {
     private Button btnJvUserDB;
     private Button btnJvPhotoDB;
 
+    TextView tvSignOutClick;
+
     private static final String TAG = "";
 
     DatabaseHelper mDatabaseHelper;
@@ -40,7 +42,7 @@ public class AdminUserDatabaseActivity extends AppCompatActivity {
         btnJvPhotoDB = (Button) findViewById(R.id.btnNavPhotoDB);
 
         lvUserDetailsView = (ListView) findViewById(R.id.lvShowUserDB);
-
+        tvSignOutClick = (TextView) findViewById(R.id.tvSignOut);
 
         PopulateListView();
         CustomAdapter adapter = new CustomAdapter(this, R.layout.custom_user_display_layout, listOfUserDetailsData);
@@ -60,6 +62,14 @@ public class AdminUserDatabaseActivity extends AppCompatActivity {
             public void onClick(View v){
                 Intent intent = new Intent(AdminUserDatabaseActivity.this, AdminPhotoDatabaseActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        tvSignOutClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentSignOut = new Intent(AdminUserDatabaseActivity.this, LoginActivity.class);
+                startActivity(intentSignOut);
             }
         });
     }

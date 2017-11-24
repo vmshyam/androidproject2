@@ -5,13 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class AdminSettingsActivity extends AppCompatActivity {
 
     private Button btnJvAdminSettings, btnJvUserDB,
-            btnjvPhotoDB, btndtUserTable, btnViewAccontLog, btndtAccountLogTable, btndtUserPhotoTable;
-
+            btnjvPhotoDB, btndtUserTable, btnViewAccontLog,
+            btndtAccountLogTable, btndtUserPhotoTable;
+    private TextView tvSignOutClick;
 
     DatabaseHelper mDatabaseHelper;
 
@@ -28,7 +30,8 @@ public class AdminSettingsActivity extends AppCompatActivity {
         btndtUserTable = (Button) findViewById(R.id.btnDropUserTable);
         btnViewAccontLog = (Button) findViewById(R.id.btnViewAccountLogs);
         btndtAccountLogTable = (Button) findViewById(R.id.btnDeleteAccoutLogTable);
-        btndtUserPhotoTable = (Button) findViewById(R.id.btnDropUserPhotoTable);
+        //btndtUserPhotoTable = (Button) findViewById(R.id.btnDropUserPhotoTable);
+        tvSignOutClick = (TextView) findViewById(R.id.tvSignOut);
 
         btnJvUserDB.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -67,17 +70,26 @@ public class AdminSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mDatabaseHelper.DropTableAccountLog();
+                mDatabaseHelper.DropTableUserPhotos();
                 Toast.makeText(AdminSettingsActivity.this,
                         "Successfully Cleared Account Log Table", Toast.LENGTH_SHORT).show();
             }
         });
 
-        btndtUserPhotoTable.setOnClickListener(new View.OnClickListener(){
+/*        btndtUserPhotoTable.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 mDatabaseHelper.DropTableUserPhotos();
                 Toast.makeText(AdminSettingsActivity.this,
                         "Successfully Cleared User Photos Table", Toast.LENGTH_SHORT).show();
+            }
+        });*/
+
+        tvSignOutClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentSignOut = new Intent(AdminSettingsActivity.this, LoginActivity.class);
+                startActivity(intentSignOut);
             }
         });
     }

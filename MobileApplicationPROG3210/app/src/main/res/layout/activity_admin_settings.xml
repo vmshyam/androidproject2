@@ -73,6 +73,7 @@
 
     <Button
         android:id="@+id/btnDropUserTable"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
@@ -85,11 +86,12 @@
 
     <Button
         android:id="@+id/btnViewAccountLogs"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="View Account Logs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,6 +99,7 @@
 
     <Button
         android:id="@+id/btnDeleteAccoutLogTable"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
@@ -113,11 +116,12 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="cursive"
         android:text="Welcome to Administrator Settings"
         android:textAlignment="center"
-        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.508"
@@ -136,8 +140,9 @@
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:srcCompat="@drawable/usersettingsicon" />
 
-    <Button
+<!--    <Button
         android:id="@+id/btnDropUserPhotoTable"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginEnd="8dp"
@@ -146,7 +151,23 @@
         android:text="Delete User Photos Table"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDropUserTable" />
+        app:layout_constraintTop_toBottomOf="@+id/btnDropUserTable" />-->
+
+    <TextView
+        android:id="@+id/tvSignOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Sign Out"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.973"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

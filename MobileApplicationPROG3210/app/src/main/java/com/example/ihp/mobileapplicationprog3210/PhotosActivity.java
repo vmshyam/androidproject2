@@ -28,6 +28,7 @@ public class PhotosActivity extends AppCompatActivity {
     private Button btnPhotosAddView;
 
     private String loggedInUserId;
+    private TextView tvSignOutClick;
 
     DatabaseHelper mDatabaseHelper;
     public ListView lvMyPhotoView;
@@ -46,6 +47,7 @@ public class PhotosActivity extends AppCompatActivity {
         btnProfileView = (Button) findViewById(R.id.btnNavProfile);
         btnPhotosView = (Button) findViewById(R.id.btnNavPhotos);
         btnPhotosAddView = (Button) findViewById(R.id.btnNavAddPhotos);
+        tvSignOutClick = (TextView) findViewById(R.id.tvSignOut);
 
         populatePhotoView();
         CustomAdapter adapter = new CustomAdapter(this, R.layout.custom_photos_layout, listOfPhotosData);
@@ -69,6 +71,14 @@ public class PhotosActivity extends AppCompatActivity {
             }
         });
 
+        tvSignOutClick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentSignOut = new Intent(PhotosActivity.this, LoginActivity.class);
+                startActivity(intentSignOut);
+            }
+        });
+
 
 
     }
@@ -76,7 +86,7 @@ public class PhotosActivity extends AppCompatActivity {
     private void populatePhotoView() {
 
         Cursor photoDataContent = mDatabaseHelper.getRetrieveUserPhotoData();
-        //TODO - Need to change the index location after new database is created
+        //TODO - Need to change the index location after new database is created ???
         while (photoDataContent.moveToNext()){
             if ((photoDataContent.getString(1).equals(loggedInUserId))){
                 String photoNameData = photoDataContent.getString(2);
