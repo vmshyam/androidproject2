@@ -15,19 +15,27 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import okhttp3.OkHttpClient;
 
 /**
- *
+ * This Java file is related to 'activity_login.xml'
+ * The purpose of this file is to allow users to login to the app.
+ *      Main landing activity.
  */
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText usernameLogin;
+
     private EditText passwordLogin;
+
     private Button btnSignIn;
+
     private TextView etSignUp;
 
     private String usernameLoggedIn = null;
+
     private String passwordLoggedIn = null;
+
     private String regUsername = null;
+
     private String regPassword = null;
 
     DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -37,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Code used to app database information
         // Start Stetho  -> chrome://inspect/#devices
         Stetho.initializeWithDefaults(this);
 
@@ -46,11 +55,15 @@ public class LoginActivity extends AppCompatActivity {
         // End Stetho
 
         usernameLogin = (EditText) findViewById(R.id.etUsernameMain);
+
         passwordLogin = (EditText) findViewById(R.id.etPasswordMain);
+
         btnSignIn = (Button) findViewById(R.id.btnSignInMain);
+
         etSignUp = (TextView) findViewById(R.id.etSignUpMain);
 
         regUsername = getIntent().getStringExtra("USERNAME_REG");
+
         regPassword = getIntent().getStringExtra("PASSWORD_REG");
 
         // When user clicks 'Sign In' button
@@ -61,34 +74,37 @@ public class LoginActivity extends AppCompatActivity {
                 usernameLoggedIn = usernameLogin.getText().toString().trim();
                 passwordLoggedIn = passwordLogin.getText().toString().trim();
 
-                //if (CheckLoginValidation())
                 if(usernameLoggedIn.equals("admin") && passwordLoggedIn.equals("password")) {
+
                     Toast.makeText(LoginActivity.this,
                             "Logging Into Admin Account", Toast.LENGTH_SHORT).show();
 
-                    //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     Intent intentAdminActivity1 = new Intent(LoginActivity.this, AdminSettingsActivity.class);
-                    //intent.putExtra("USERNAME", usernameLoggedIn);
+
                     startActivity(intentAdminActivity1);
                 }
                 else if (CheckLoginValidation()){
+
                     Toast.makeText(LoginActivity.this,
                             "Welcome to SnapSter: " + usernameLoggedIn, Toast.LENGTH_SHORT).show();
 
                     String foundUserLoggedInId = Integer.toString(dbHelper.retrieveSelectedUserID(usernameLoggedIn));
 
                     dbHelper.insertAccountLogData(foundUserLoggedInId, usernameLoggedIn);
-                    //dbHelper.insertAccountLogData("0", usernameLoggedIn);
 
-                    //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     Intent intentHomeActivity = new Intent(LoginActivity.this, HomeActivity.class);
+
                     intentHomeActivity.putExtra("LOGGED_IN_USER_ID", foundUserLoggedInId);
+
                     startActivity(intentHomeActivity);
 
                 }else{
+
                     Toast.makeText(LoginActivity.this,
                             "Please Enter Correct Username and Password", Toast.LENGTH_SHORT).show();
+
                     usernameLogin.getText().clear();
+
                     passwordLogin.getText().clear();
                 }
             }
@@ -98,7 +114,9 @@ public class LoginActivity extends AppCompatActivity {
         etSignUp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+
                 startActivity(intent);
             }
         });
@@ -117,20 +135,23 @@ public class LoginActivity extends AppCompatActivity {
         String searchedPassword = null;
 
         if (usernameLoggedIn.equals("") || passwordLoggedIn.equals("")){
+
             checkResult = false;
+
         }
         else {
+
             searchedPassword = dbHelper.searchUserNameInDatabase(usernameLoggedIn);
         }
 
         if (passwordLoggedIn.equals(searchedPassword)){
+
             checkResult = true;
+
         }
 
-/*        if ((usernameLoggedIn.equals(regUsername)) && (passwordLoggedIn.equals(regPassword))){
-            checkResult = true;
-        }*/
 
         return checkResult;
+
     }
 }

@@ -18,14 +18,20 @@ import android.widget.Toast;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText accountNameValue;
+
     private EditText usernameValue;
+
     private EditText emailValue;
+
     private EditText passwordValue;
     private Button btnNewRegister;
 
     private String usersName;
+
     private String usersUsername;
+
     private String userEmail;
+
     private String userPassword;
 
     private TextView tvBackClick;
@@ -38,34 +44,47 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         accountNameValue = (EditText) findViewById(R.id.etNameReg);
+
         usernameValue = (EditText) findViewById(R.id.etUsernameReg);
+
         emailValue = (EditText) findViewById(R.id.etEmailReg);
+
         passwordValue = (EditText) findViewById(R.id.etPasswordReg);
+
         btnNewRegister = (Button) findViewById(R.id.btnSignUpReg);
+
         tvBackClick = (TextView) findViewById(R.id.tvBack);
 
         // When user click 'Sign Up' button
         btnNewRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (!ValidateRegistrationInputs()){
+
                     Toast.makeText(RegisterActivity.this,
                             "Registration was Unsuccessful", Toast.LENGTH_SHORT).show();
+
                 }else{
 
                     //Insert user information into database
                     Contact c = new Contact();
+
                     c.setGivenName(usersName);
+
                     c.setUserName(usersUsername);
+
                     c.setEmailAdress(userEmail);
+
                     c.setPassword(userPassword);
 
                     helper.insertContact(c);
+
                     Toast.makeText(RegisterActivity.this,
                             "Successfully Registered", Toast.LENGTH_SHORT).show();
+
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-//                    intent.putExtra("USERNAME_REG", usersUsername);
-//                    intent.putExtra("PASSWORD_REG", userPassword);
+
                     startActivity(intent);
                 }
             }
@@ -98,14 +117,14 @@ public class RegisterActivity extends AppCompatActivity {
             inputValueCheck = false;
         }
 
-        if (usersUsername.isEmpty()){
-            usernameValue.setError("Please Enter a Username");
+        if (usersUsername.isEmpty() || helper.searchIfUsernameExists(usersUsername)){
+            usernameValue.setError("Please Enter a Username or Entered Username Has Been Taken");
             usernameValue.getText().clear();
             inputValueCheck = false;
         }
 
         if (userEmail.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()){
-            emailValue.setError("Please Enter a Valid email");
+            emailValue.setError("Please Enter a Valid Email");
             emailValue.getText().clear();
             inputValueCheck = false;
         }

@@ -1,7 +1,9 @@
 package com.example.ihp.mobileapplicationprog3210;
 
 /**
- * Created by iHP on 11/22/2017.
+ * This Java file is related to 'AdminAccountLogsActivity'
+ * The purpose of this class is to store user information
+ *      to track when user login to the app
  */
 
 public class AccountUserLogData {

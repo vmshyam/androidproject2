@@ -1,5 +1,11 @@
 package com.example.ihp.mobileapplicationprog3210;
 
+/**
+ * This Java file is related to 'activity_admin_user_database.xml'
+ * The purpose of this file is to allow the Admin of the app to
+ *      view all the user account that are created within the app
+ */
+
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -18,7 +24,9 @@ import java.util.ArrayList;
 public class AdminUserDatabaseActivity extends AppCompatActivity {
 
     private Button btnJvAdminSettings;
+
     private Button btnJvUserDB;
+
     private Button btnJvPhotoDB;
 
     TextView tvSignOutClick;
@@ -28,6 +36,7 @@ public class AdminUserDatabaseActivity extends AppCompatActivity {
     DatabaseHelper mDatabaseHelper;
 
     private ListView lvUserDetailsView;
+
     ArrayList<UserDetailData> listOfUserDetailsData =  new ArrayList<>();
 
     @Override
@@ -38,17 +47,23 @@ public class AdminUserDatabaseActivity extends AppCompatActivity {
         mDatabaseHelper = new DatabaseHelper(this);
 
         btnJvAdminSettings = (Button) findViewById(R.id.btnNavAdminSettings);
+
         btnJvUserDB = (Button) findViewById(R.id.btnNavUserDB);
+
         btnJvPhotoDB = (Button) findViewById(R.id.btnNavPhotoDB);
 
         lvUserDetailsView = (ListView) findViewById(R.id.lvShowUserDB);
+
         tvSignOutClick = (TextView) findViewById(R.id.tvSignOut);
 
+        //Method used to populate the List view of this related activity to show user account created within the app
         PopulateListView();
+
+        //Required to use custom adapter view to show Admin a custom list view experience
         CustomAdapter adapter = new CustomAdapter(this, R.layout.custom_user_display_layout, listOfUserDetailsData);
         lvUserDetailsView.setAdapter(adapter);
 
-        
+        //Navigation button to Home Admin Setting activity
         btnJvAdminSettings.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -57,6 +72,7 @@ public class AdminUserDatabaseActivity extends AppCompatActivity {
             }
         });
 
+        //Navigation button to show all user photos added to the account
         btnJvPhotoDB.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -65,6 +81,7 @@ public class AdminUserDatabaseActivity extends AppCompatActivity {
             }
         });
 
+        //Button to sign out of the app
         tvSignOutClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,71 +91,68 @@ public class AdminUserDatabaseActivity extends AppCompatActivity {
         });
     }
 
-/*    private void PopulateListView() {
-        Log.d(TAG, "populateListView");
-
-        //get the data and append to a list
-        Cursor data = mDatabaseHelper.getRetrieveUserData();
-
-        ArrayList<String> listData = new ArrayList<>();
-
-        if (data.getCount() !=0) {
-            while (data.moveToNext()){
-                //get the value from the database in column 1
-                //then add it to the ArrayList
-                listData.add(data.getString(1));
-            }
-        }else {
-            listData.add("Account User Table is Empty");
-        }
-        
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        mListView.setAdapter(adapter);
-    }*/
-
+    /** Method used to populate the List view of this related activity to show user account created within the app  **/
     private void PopulateListView(){
 
         Cursor allUserDetailsContent = mDatabaseHelper.getRetrieveUserData();
 
         while (allUserDetailsContent.moveToNext()){
+
             listOfUserDetailsData.add(new UserDetailData(allUserDetailsContent.getString(1),
                     allUserDetailsContent.getString(2),
                     allUserDetailsContent.getString(3)));
+
         }
     }
 
+    /** Method used to allow the use of custom layout activity to display custom formatted views **/
     public class CustomAdapter extends BaseAdapter
     {
 
         private Context context;
+
         private int layout;
+
         ArrayList<UserDetailData> dataList;
 
         public CustomAdapter(Context context, int layout, ArrayList<UserDetailData> dataList) {
+
             this.context = context;
+
             this.layout = layout;
+
             this.dataList = dataList;
         }
 
         @Override
         public int getCount(){
+
             return dataList.size();
+
         }
 
         @Override
         public Object getItem(int position){
+
             return dataList.get(position);
+
         }
 
         @Override
         public long getItemId(int position){
+
             return position;
+
         }
 
         private class ViewHolder{
+
             TextView hFullName;
+
             TextView hUsername;
+
             TextView hEmail;
+
         }
 
         @Override
@@ -149,27 +163,35 @@ public class AdminUserDatabaseActivity extends AppCompatActivity {
             ViewHolder holder;
 
             if(row == null){
+
                 LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+
                 row = inflater.inflate(layout, null);
+
                 holder = new CustomAdapter.ViewHolder();
+
                 holder.hFullName = row.findViewById(R.id.tvUsername);
+
                 holder.hUsername = row.findViewById(R.id.tvDateStamp);
+
                 holder.hEmail = row.findViewById(R.id.tvEmail);
+
                 row.setTag(holder);
+
             } else {
+
                 holder = (ViewHolder) row.getTag();
             }
 
             final UserDetailData userDetailsList = dataList.get(position);
 
             holder.hFullName.setText(userDetailsList.getFullName());
+
             holder.hUsername.setText(userDetailsList.getUsername());
+
             holder.hEmail.setText(userDetailsList.getEmail());
 
             return row;
         }
-
     }
-
-
 }

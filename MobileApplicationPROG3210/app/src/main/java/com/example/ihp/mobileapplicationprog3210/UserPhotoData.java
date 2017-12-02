@@ -1,18 +1,25 @@
 package com.example.ihp.mobileapplicationprog3210;
 
 /**
- * Created by iHP on 11/3/2017.
+ * This Java file is related to 'PhotosActivity'
+ * The purpose of this class is to store user photo information
+ *      to display to user of the photos added by the user.
  */
 
 public class UserPhotoData {
 
     private String photoName;
+
     private byte[] photoImage;
+
     private String photoDateStamp;
 
     public UserPhotoData(String photoName, String photoDateStamp, byte[] photoImage) {
+
         this.photoName = photoName;
+
         this.photoImage = photoImage;
+
         this.photoDateStamp = photoDateStamp;
     }
 

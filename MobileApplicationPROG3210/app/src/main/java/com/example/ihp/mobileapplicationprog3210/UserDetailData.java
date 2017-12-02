@@ -1,7 +1,9 @@
 package com.example.ihp.mobileapplicationprog3210;
 
 /**
- * Created by iHP on 11/5/2017.
+ * This Java file is related to 'AdminUserDatabaseActivity'
+ * The purpose of this class is to store user information
+ *      of the user that have an account within the app.
  */
 
 public class UserDetailData {

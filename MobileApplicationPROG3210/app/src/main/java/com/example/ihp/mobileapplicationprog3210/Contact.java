@@ -1,7 +1,9 @@
 package com.example.ihp.mobileapplicationprog3210;
 
 /**
- *
+ * This Java file is related to 'LoginActivity', 'RegisterActivity'
+ * The purpose of this class is used to store each user information
+ *      that is created within the app.
  */
 
 public class Contact {
