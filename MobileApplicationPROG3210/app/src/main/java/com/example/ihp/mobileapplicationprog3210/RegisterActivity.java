@@ -1,5 +1,6 @@
 package com.example.ihp.mobileapplicationprog3210;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -66,6 +67,12 @@ public class RegisterActivity extends AppCompatActivity {
                             "Registration was Unsuccessful", Toast.LENGTH_SHORT).show();
 
                 }else{
+
+                    //Visual Authentication progress bar
+                    final ProgressDialog progressDialog = new ProgressDialog(RegisterActivity.this);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Authenticating...");
+                    progressDialog.show();
 
                     //Insert user information into database
                     Contact c = new Contact();

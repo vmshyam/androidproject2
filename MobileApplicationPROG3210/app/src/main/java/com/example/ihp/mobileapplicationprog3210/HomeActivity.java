@@ -34,6 +34,8 @@ public class HomeActivity extends AppCompatActivity {
 
     DatabaseHelper mDatabaseHelper;
 
+    private  TextView tvSettingActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,8 @@ public class HomeActivity extends AppCompatActivity {
         tvEmailView = (TextView) findViewById(R.id.tvEmail);
 
         tvSignOutClick = (TextView) findViewById(R.id.tvSignOut);
+
+        tvSettingActivity = (TextView) findViewById(R.id.tvSettings);
 
         //Method used to populate given user information such as Username, Given Name, and Email
         populateHomeView();
@@ -86,6 +90,16 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentSignOut = new Intent(HomeActivity.this, LoginActivity.class);
                 startActivity(intentSignOut);
+            }
+        });
+
+        //Button to allow user to access settings activity to send emails and view developers website
+        tvSettingActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentSettingActivity = new Intent(HomeActivity.this, UserHomeSettingsActivity.class);
+                intentSettingActivity.putExtra("LOGGED_IN_USER_ID", loggedInUserId);
+                startActivity(intentSettingActivity);
             }
         });
 

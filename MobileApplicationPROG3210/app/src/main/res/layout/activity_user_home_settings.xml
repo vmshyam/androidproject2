@@ -11,7 +11,7 @@
 
 
     <Button
-        android:id="@+id/btnNavPhotoDB"
+        android:id="@+id/btnNavAddPhotos"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="107dp"
         android:layout_height="25dp"
@@ -22,7 +22,7 @@
         android:layout_marginStart="236dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
-        android:text="View Photo DB"
+        android:text="Add Photos"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         app:layout_constraintVertical_bias="0.984" />
 
     <Button
-        android:id="@+id/btnNavUserDB"
+        android:id="@+id/btnNavPhotos"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="110dp"
         android:layout_height="25dp"
@@ -42,7 +42,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
-        android:text="View User DB"
+        android:text="Photos"
+        android:textColor="@android:color/background_light"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +52,7 @@
         app:layout_constraintVertical_bias="0.984" />
 
     <Button
-        android:id="@+id/btnNavAdminSettings"
+        android:id="@+id/btnNavProfile"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="107dp"
         android:layout_height="25dp"
@@ -62,96 +63,32 @@
         android:layout_marginEnd="236dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
-        android:text="Admin Settings"
-        android:textColor="@color/colorAccent"
+        android:text="Profile"
         android:textSize="12sp"
-        android:textStyle="normal|bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.984" />
 
-    <Button
-        android:id="@+id/btnDropUserTable"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:text="Delete User Table"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDeleteAccoutLogTable" />
-
-    <Button
-        android:id="@+id/btnBgServiceStart"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="15dp"
-        android:text="View Account Logs"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
-
-    <Button
-        android:id="@+id/btnDeleteAccoutLogTable"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:text="Delete Accout Log Table"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnBgServiceStart" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView6"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="44dp"
         android:fontFamily="cursive"
-        android:text="Welcome to Administrator Settings"
+        android:text="Send Admin Email"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="30sp"
+        android:textSize="36sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/lvMyPhoto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:srcCompat="@drawable/usersettingsicon" />
-
-<!--    <Button
-        android:id="@+id/btnDropUserPhotoTable"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:text="Delete User Photos Table"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDropUserTable" />-->
 
     <TextView
         android:id="@+id/tvSignOut"
@@ -176,27 +113,99 @@
         android:layout_gravity="center"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="96dp"
         android:background="@android:color/holo_orange_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvOptionalSettings"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/etEmailSubject"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="288dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-smallcaps"
-        android:text="Settings"
-        android:textColor="@android:color/holo_orange_light"
-        android:textSize="12sp"
-        android:textStyle="bold"
+        android:layout_marginTop="132dp"
+        android:ems="10"
+        android:ellipsize="start"
+        android:gravity="center"
+        android:hint="Please Enter Email Subject ..."
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/etEmailContent"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:ellipsize="start"
+        android:gravity="center"
+        android:hint="Please Enter Email Content Here ..."
+        android:inputType="textMultiLine"
+        android:textAlignment="inherit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmailSubject" />
+
+    <Button
+        android:id="@+id/btnSendEmail"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="5dp"
+        android:text="Send Email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmailContent" />
+
+    <TextView
+        android:id="@+id/textViewAdminPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="cursive"
+        android:text="About Admin Page"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSendEmail" />
+
+    <View
+        android:layout_width="330dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="452dp"
+        android:background="@android:color/holo_orange_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAboutAdmin"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:text="Admin Page"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAdminPage" />
 
 </android.support.constraint.ConstraintLayout>

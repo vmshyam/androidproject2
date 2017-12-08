@@ -1,5 +1,6 @@
 package com.example.ihp.mobileapplicationprog3210;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -79,6 +80,12 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this,
                             "Logging Into Admin Account", Toast.LENGTH_SHORT).show();
 
+                    //Visual Authentication progress bar
+                    final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Authenticating...");
+                    progressDialog.show();
+
                     Intent intentAdminActivity1 = new Intent(LoginActivity.this, AdminSettingsActivity.class);
 
                     startActivity(intentAdminActivity1);
@@ -87,6 +94,12 @@ public class LoginActivity extends AppCompatActivity {
 
                     Toast.makeText(LoginActivity.this,
                             "Welcome to SnapSter: " + usernameLoggedIn, Toast.LENGTH_SHORT).show();
+
+                    //Visual Authentication progress bar
+                    final ProgressDialog progressDialog = new ProgressDialog(LoginActivity.this);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Authenticating...");
+                    progressDialog.show();
 
                     String foundUserLoggedInId = Integer.toString(dbHelper.retrieveSelectedUserID(usernameLoggedIn));
 

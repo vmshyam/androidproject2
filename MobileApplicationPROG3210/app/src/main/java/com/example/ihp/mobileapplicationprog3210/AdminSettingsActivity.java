@@ -23,7 +23,7 @@ public class AdminSettingsActivity extends AppCompatActivity {
             btndtAccountLogTable,
             btndtUserPhotoTable;
 
-    private TextView tvSignOutClick;
+    private TextView tvSignOutClick, tvOptionalSettings;
 
     DatabaseHelper mDatabaseHelper;
 
@@ -42,13 +42,15 @@ public class AdminSettingsActivity extends AppCompatActivity {
 
         btndtUserTable = (Button) findViewById(R.id.btnDropUserTable);
 
-        btnViewAccontLog = (Button) findViewById(R.id.btnViewAccountLogs);
+        btnViewAccontLog = (Button) findViewById(R.id.btnBgServiceStart);
 
         btndtAccountLogTable = (Button) findViewById(R.id.btnDeleteAccoutLogTable);
 
         //btndtUserPhotoTable = (Button) findViewById(R.id.btnDropUserPhotoTable);
 
         tvSignOutClick = (TextView) findViewById(R.id.tvSignOut);
+
+        tvOptionalSettings = (TextView) findViewById(R.id.tvOptionalSettings);
 
         //Navigation button to show all active users of the app activity
         btnJvUserDB.setOnClickListener(new View.OnClickListener(){
@@ -115,6 +117,14 @@ public class AdminSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentSignOut = new Intent(AdminSettingsActivity.this, LoginActivity.class);
+                startActivity(intentSignOut);
+            }
+        });
+
+        tvOptionalSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentSignOut = new Intent(AdminSettingsActivity.this, AdminOptionSettingsActivity.class);
                 startActivity(intentSignOut);
             }
         });

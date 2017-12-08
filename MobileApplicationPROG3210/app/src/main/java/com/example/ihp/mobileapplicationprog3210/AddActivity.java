@@ -245,9 +245,9 @@ public class AddActivity extends AppCompatActivity {
 
                 int height = bitmapImage.getHeight();
 
-                float scaleWidth = ((float) 500) / width;
+                float scaleWidth = ((float) 1000) / width;
 
-                float scaleHeight = ((float) 250) / height;
+                float scaleHeight = ((float) 950) / height;
 
                 Matrix matrix = new Matrix();
 
@@ -274,9 +274,9 @@ public class AddActivity extends AppCompatActivity {
 
             int height = bitmapCamera.getHeight();
 
-            float scaleWidth = ((float) 500) / width;
+            float scaleWidth = ((float) 1000) / width;
 
-            float scaleHeight = ((float) 250) / height;
+            float scaleHeight = ((float) 950) / height;
 
             Matrix matrix = new Matrix();
 
