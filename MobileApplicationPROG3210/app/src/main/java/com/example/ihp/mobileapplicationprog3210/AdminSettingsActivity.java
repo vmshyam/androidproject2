@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class AdminSettingsActivity extends AppCompatActivity {
 
     private Button btnJvAdminSettings,
@@ -27,10 +29,14 @@ public class AdminSettingsActivity extends AppCompatActivity {
 
     DatabaseHelper mDatabaseHelper;
 
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_settings);
+
+        mAuth = FirebaseAuth.getInstance();
 
         mDatabaseHelper = new DatabaseHelper(this);
 
@@ -116,6 +122,9 @@ public class AdminSettingsActivity extends AppCompatActivity {
         tvSignOutClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mAuth.signOut();
+                Toast.makeText(AdminSettingsActivity.this,
+                        "Signed Out of Admin Account", Toast.LENGTH_SHORT).show();
                 Intent intentSignOut = new Intent(AdminSettingsActivity.this, LoginActivity.class);
                 startActivity(intentSignOut);
             }
