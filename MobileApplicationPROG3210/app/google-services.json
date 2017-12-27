@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "303557784244",
+    "firebase_url": "https://maprog3210finalproject.firebaseio.com",
+    "project_id": "maprog3210finalproject",
+    "storage_bucket": "maprog3210finalproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:303557784244:android:b4729d9e7e61bd9c",
+        "android_client_info": {
+          "package_name": "com.example.ihp.mobileapplicationprog3210"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "303557784244-8fe8rdbn2o85j8lc6fps9brmfduocv0o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3Uf1CZdDO2wkM6s0YK1qG-kdIx0cNKEg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
