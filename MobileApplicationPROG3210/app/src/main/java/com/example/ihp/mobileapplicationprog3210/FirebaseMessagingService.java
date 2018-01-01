@@ -19,7 +19,7 @@ import com.google.firebase.messaging.RemoteMessage;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 
-    private static final String TAG = "FirebaseMessagingS";
+    private static final String TAG = "FirebaseMessagings";
 
     public FirebaseMessagingService(){
 

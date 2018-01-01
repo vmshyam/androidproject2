@@ -17,6 +17,12 @@ import android.widget.Toast;
 
 import java.io.InputStream;
 
+/**
+ * This Java file is related to 'activity_admin_option_settings'
+ * The purpose of this file is to allow the admin to download a image
+ *      using input stream.
+ */
+
 public class AdminOptionSettingsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button btnJvAdminSettings, btnJvUserDB, btnJvPhotoDB, btnStartBGService, btnStopBGService;
@@ -113,6 +119,7 @@ public class AdminOptionSettingsActivity extends AppCompatActivity implements Vi
         }
     }
 
+    /** Method used to allow to use Asynchronous Task to download Image from Web **/
     private class DownloadImage extends AsyncTask<String, Void, Bitmap >{
 
         @Override
