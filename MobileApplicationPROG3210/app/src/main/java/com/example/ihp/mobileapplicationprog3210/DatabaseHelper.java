@@ -339,6 +339,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         dtUsersPhoto.close();
     }
 
+    /** OnUpgrade Method **/
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
 
