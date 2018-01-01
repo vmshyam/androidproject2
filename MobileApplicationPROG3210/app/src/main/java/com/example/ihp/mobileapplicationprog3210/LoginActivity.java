@@ -88,9 +88,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(usernameLoggedIn.contains("admin")) {
 
-/*                    Toast.makeText(LoginActivity.this,
-                            "Logging Into Admin Account", Toast.LENGTH_SHORT).show();*/
-
+                    //Firebase User connection components
                     mAuth.signInWithEmailAndPassword(usernameLoggedIn, passwordLoggedIn).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
