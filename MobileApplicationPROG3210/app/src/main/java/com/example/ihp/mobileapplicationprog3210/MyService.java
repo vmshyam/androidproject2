@@ -8,7 +8,7 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 
 /**
- * Created by iHP on 12/5/2017.
+ * This Java file allows the background services to work properly
  */
 
 public class MyService extends Service {
