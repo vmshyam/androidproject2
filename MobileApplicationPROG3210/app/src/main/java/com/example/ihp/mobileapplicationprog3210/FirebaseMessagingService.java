@@ -12,7 +12,9 @@ import android.util.Log;
 import com.google.firebase.messaging.RemoteMessage;
 
 /**
- * Created by iHP on 12/27/2017.
+ * This Java File allow the application to connect to
+ *      Google Firebase, and allow the Admin to send
+ *      Push Notifications to the User App
  */
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
