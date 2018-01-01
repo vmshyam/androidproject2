@@ -25,6 +25,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
 
+/**
+ * This Java file is related to 'activity_photos.xml'
+ * The purpose of this file is to allow users to view Added photos.
+ */
+
 public class PhotosActivity extends AppCompatActivity {
 
     private Button btnProfileView;
