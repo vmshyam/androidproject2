@@ -9,6 +9,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**
+ * This Java file is related to 'activity_user_home_settings'
+ * The purpose of this file is to allow the user to send
+ *      Admin a personal email message. And also allow
+ *      user to view app developer Website link.
+ */
+
 public class UserHomeSettingsActivity extends AppCompatActivity {
 
     private Button btnSendEmail;
